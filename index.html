@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Weartake</title>
+</head>
+<body id="body">
+    <header>
+        <h1>Weartake</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="todos" class="link-pesquisa">Todos</a></li>
+                <li><a href="#"  class="link-pesquisa">Acessórios</a></li>
+                <li><a href="#"  class="link-pesquisa">Calçados</a></li>
+                <li><a href="#"  class="link-pesquisa">Camisetas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="main">
+
+        <div class="carro-e-pesquisa">
+            <div class="barra-pesquisa">
+                <form class="barra-pesquisa">
+                    <input type="search" id="insere-pesquisa" placeholder="Digite aqui sua pesquisa">
+                    <button id="botao-pesquisa" type="submit">Pesquisar</button>
+                </form>
+            </div>
+            <div class="carrinho">
+                <figure id="car">
+                    <a href="#"><img src="img/car.png" alt="icon-shopping-car"/></a>
+                    <figcaption>Ícone do carrinho de compras</figcaption>
+                </figure>
+                <h2>Carrinho de compras</h2>
+                <div id="itens-carrinho">
+                    <h2 id="texto-carrinho1">Carrinho vazio</h2>
+                    <p id="texto-carrinho2">Adicione items</p>       
+                </div> 
+            </div>
+        </div>
+        
+        <div id="vitrine">
+            
+        </div>
+    </section>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
