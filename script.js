@@ -15,6 +15,20 @@ let produtosDoCarrinho = [];
 
 const vitrine = document.getElementById('vitrine');
 
+const carrinho = document.getElementById('itens-carrinho');
+
+const botoes = document.getElementsByClassName('link');
+
+let abriuCarrinho = true;
+
+let valorDaCompra = 0;
+
+let contadorDeProdutos = 0;
+
+const quantidade = document.createElement('p');
+const valorTotal = document.createElement('p');
+const valorEQuantidade = document.createElement('div');
+
 const criarCardProduto = (produto) => {
 
     let div = document.createElement('div');
@@ -45,7 +59,6 @@ const criarCardProduto = (produto) => {
     let botao = document.createElement('a');
     botao.href = "#";
     botao.className = 'link';
-    //botao.id = 'link'+(i+1);
     botao.innerText = "Adicionar ao carrinho";
 
     div.appendChild(fig);
@@ -68,6 +81,109 @@ const addCardsNaVitrine = (produtos) => {
 }
 
 addCardsNaVitrine(produtos);
+
+const criarCardCarrinho = (produto) => {
+
+    let {nome, preco, img} = produto;
+
+    let item = document.createElement('div');
+    item.className = 'item-adc';
+
+    let fig = document.createElement('figure');
+    fig.className = 'mini-fig';
+
+    let image = document.createElement('img');
+    image.src = img;
+    image.className = 'mini-img';
+
+    let h3 = document.createElement('h3');
+    h3.innerText = nome;
+    h3.className = 'nome-produto';
+
+    let precoProduto = document.createElement('p');
+    precoProduto.className = "preco";
+    precoProduto.innerText = `R$ ${preco},00`;
+
+    let remover = document.createElement('a');
+    remover.href = "#";
+    remover.className = 'link-remover';
+    remover.innerText = "Remover produto";
+
+    item.appendChild(fig);
+    fig.appendChild(image);
+    item.appendChild(h3);
+    item.appendChild(precoProduto);
+    item.appendChild(remover);
+
+    contadorDeProdutos += 1;
+    valorDaCompra += preco;
+
+    addBarraDePreco(contadorDeProdutos, valorDaCompra);
+
+    let lastChild = carrinho.lastChild;
+    carrinho.insertBefore(item, lastChild);
+
+}
+
+function invisibleTags() {
+
+    if(abriuCarrinho){
+        let element = document.getElementById("texto-carrinho1");
+        let element2 = document.getElementById("texto-carrinho2");
+        element.id = 'out';
+        element2.id = 'out';
+    }
+    
+    
+}
+
+function addProdutoAoCarrinho(){
+
+    for(let i = 0; i < botoes.length; i++){
+        botoes[i].addEventListener('click', () => {
+            invisibleTags();
+            criarCardCarrinho(produtos[i])});
+    }
+
+}
+
+addProdutoAoCarrinho();
+
+const addBarraDePreco = (cont, valorCompra) => {
+
+    if(abriuCarrinho){
+        valorEQuantidade.id = 'valores';
+ 
+        quantidade.innerText = 'Quantidade:     ';
+        quantidade.className = 'content-valores'
+       
+        valorTotal.innerHTML = 'Total:       R$ ';
+        valorTotal.className = 'content-valores';
+
+        carrinho.appendChild(valorEQuantidade);
+        valorEQuantidade.appendChild(quantidade);
+        valorEQuantidade.appendChild(valorTotal);
+        abriuCarrinho = false;
+    }
+
+    quantidade.innerText =  `Quantidade:    ${cont}`
+
+    valorTotal.innerText = `Total:   R$ ${valorCompra},00`
+
+}
+
+function identificaItem(event){
+    const link = event.target;
+    if(link.className === "link-remover"){
+        removerDoCarrinho(link);
+    }
+}
+
+function removerDoCarrinho(item){
+    item.parentElement.remove();
+}
+
+carrinho.addEventListener('click', identificaItem);
 
 
 /** 
