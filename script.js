@@ -21,6 +21,8 @@ const botoes = document.getElementsByClassName('link');
 
 let abriuCarrinho = true;
 
+const objetoProdutos = [];
+
 let valorDaCompra = 0;
 
 let contadorDeProdutos = 0;
@@ -84,10 +86,11 @@ addCardsNaVitrine(produtos);
 
 const criarCardCarrinho = (produto) => {
 
-    let {nome, preco, img} = produto;
+    let {id, nome, preco, img} = produto;
 
     let item = document.createElement('div');
     item.className = 'item-adc';
+    item.id = id;
 
     let fig = document.createElement('figure');
     fig.className = 'mini-fig';
@@ -106,6 +109,7 @@ const criarCardCarrinho = (produto) => {
 
     let remover = document.createElement('a');
     remover.href = "#";
+    remover.id = id;
     remover.className = 'link-remover';
     remover.innerText = "Remover produto";
 
@@ -115,17 +119,16 @@ const criarCardCarrinho = (produto) => {
     item.appendChild(precoProduto);
     item.appendChild(remover);
 
-    contadorDeProdutos += 1;
-    valorDaCompra += preco;
+    objetoProdutos.push(produto);
 
-    addBarraDePreco(contadorDeProdutos, valorDaCompra);
+    addBarraDePreco(objetoProdutos);
 
     let lastChild = carrinho.lastChild;
     carrinho.insertBefore(item, lastChild);
 
 }
 
-function invisibleTags() {
+const invisibleTags = () => {
 
     if(abriuCarrinho){
         let element = document.getElementById("texto-carrinho1");
@@ -137,7 +140,7 @@ function invisibleTags() {
     
 }
 
-function addProdutoAoCarrinho(){
+const addProdutoAoCarrinho = () => {
 
     for(let i = 0; i < botoes.length; i++){
         botoes[i].addEventListener('click', () => {
@@ -149,7 +152,7 @@ function addProdutoAoCarrinho(){
 
 addProdutoAoCarrinho();
 
-const addBarraDePreco = (cont, valorCompra) => {
+const addBarraDePreco = (arrayProdutos) => {
 
     if(abriuCarrinho){
         valorEQuantidade.id = 'valores';
@@ -166,20 +169,29 @@ const addBarraDePreco = (cont, valorCompra) => {
         abriuCarrinho = false;
     }
 
-    quantidade.innerText =  `Quantidade:    ${cont}`
+    quantidade.innerText =  `Quantidade:    ${arrayProdutos.length}`;
+
+    let valorCompra = 0;
+
+    arrayProdutos.forEach((item) => {
+        valorCompra = valorCompra + item.preco;
+    })
 
     valorTotal.innerText = `Total:   R$ ${valorCompra},00`
 
 }
 
-function identificaItem(event){
+const identificaItem = (event) => {
     const link = event.target;
     if(link.className === "link-remover"){
-        removerDoCarrinho(link);
+        removerDoCarrinho(link, objetoProdutos);
     }
 }
 
-function removerDoCarrinho(item){
+const removerDoCarrinho = (item, listaProdutos) => {
+    let index = Number(item.id);
+    listaProdutos.splice(index, 1);
+    addBarraDePreco(listaProdutos);
     item.parentElement.remove();
 }
 

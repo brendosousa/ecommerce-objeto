@@ -1,6 +1,7 @@
 const  produtos =  [
 
     {
+        id: 0,
         nome: 'Lightweigth Jacket',
         tipo: 'Camisetas',
         preco: 100,
@@ -9,6 +10,7 @@ const  produtos =  [
         img: './img/1.png'
     },
     {
+        id: 1,    
         nome: 'Black Hat',
         tipo: 'Acessórios',
         preco: 100,
@@ -17,6 +19,7 @@ const  produtos =  [
         img: './img/2.png'
     },
     {
+        id: 2,
         nome: 'Mask',   
         tipo: 'Acessórios',
         preco: 40,
@@ -25,6 +28,7 @@ const  produtos =  [
         img: './img/3.png'
     },
     {
+        id: 3,
         nome: 'T-Shirt',
         tipo: 'Camisetas',
         preco: 100,
@@ -33,6 +37,7 @@ const  produtos =  [
         img: './img/4.png'
     },
     {
+        id: 4,
         nome: 'Short-Sleeve T-Shirt',
         tipo: 'Camisetas',
         preco: 100,
@@ -41,6 +46,7 @@ const  produtos =  [
         img: './img/5.png'
     },
     {
+        id: 5,
         nome: 'Champion Packable Jacket',
         tipo: 'Camisetas',
         preco: 100,
