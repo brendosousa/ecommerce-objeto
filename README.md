@@ -2,7 +2,7 @@
 
 Trabalho desenvolvido na Kenzie Academy Brasil que envolve a construção de uma página web de um loja virtual com vários itens em sua vitrine e funções de adicionar produtos a um carrinho de compras virtual, além de filtrar produtos por categoria na exibição e fazer a pesquisa de itens pelos nomes.
 
-Esse projeto foi readaptado para utilizar o conceito de objetos e também a sintaxe ES6.
+Esse projeto foi readaptado para utilizar o conceito de objetos e também a sintaxe ES6 do JavaScript.
 
 ## Tarefa
 Após estruturar o html e css da sua aplicação, iremo adicionar o que já aprendemos de DOM para fazermos algumas funcionalidades.
